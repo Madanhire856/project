@@ -1,9 +1,9 @@
 {
 "builds": [{
 
-"src": "elevate/wsgi.py",
+"src": "blog/wsgi.py",
 
-"use": "@vercel/python",
+"use": "@blog/python",
 
 "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
 
@@ -11,6 +11,6 @@
 "routes":[
 {"src": "/(.*)",
 
-"dest": "elevate/wsgi.py"
+"dest": "blog/wsgi.py"
 }]
 }
