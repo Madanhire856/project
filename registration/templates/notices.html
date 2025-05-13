@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborhood Watch Notices</title>
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+    <style>
+        .notice-card {
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s;
+        }
+
+        .notice-card:hover {
+            transform: scale(1.05);
+        }
+
+        .notice-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: opacity 0.5s;
+        }
+
+        .notice-card img:hover {
+            opacity: 0.8;
+        }
+
+        .notice-card .card-body {
+            padding: 20px;
+        }
+
+        .notice-card .card-title {
+            font-weight: bold;
+            font-size: 18px;
+            animation: fadeIn 2s;
+        }
+
+        .notice-card .card-text {
+            font-size: 16px;
+            color: #666;
+            animation: fadeIn 2.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-md-12">
+                <h1 class="display-4" style="animation: slideIn 1s;">Notices and Posts</h1>
+                <hr class="my-4">
+                <div class="row">
+                    {% for notice in notices %}
+                    <div class="col-md-4">
+                        <div class="card notice-card" style="animation: fadeIn 1.5s;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ notice.title }}</h5>
+                                <p>Posted:{{notice.date}}</p>
+                                <p class="card-text">{{ notice.content|truncatewords:20 }}</p>
+                                <a href="#" class="btn btn-primary" style="animation: pulse 2s infinite;">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </main>
+        </div>
+    </div>
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <span style="color:white;">All Rights Reserved @2025</span>
+        </div>
+    </footer>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.notice-card').hide().fadeIn(1000);
+        });
+    </script>
+    <style>
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</body>
+</html>

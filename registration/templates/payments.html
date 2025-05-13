@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record a payment</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css'%}">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-size: 1rem;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 0.5em;
+            font-size: 1rem;
+        }
+
+        .btn-success {
+            border-radius: 5px;
+        }
+
+        .alert {
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 0.9rem;
+            }
+
+            .form-control {
+                padding: 0.4em;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 0.8rem;
+            }
+
+            .form-control {
+                padding: 0.3em;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'admin_navbar.html' %}
+    <div class="container container-fluid col-md-6 mt-5">
+        <h3 class="text-center mb-4">Record a payment</h3>
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {% if error_message %}
+                <p class="alert alert-danger">{{error_message}}</p>
+            {%endif%}
+            {% if success_message %}
+                <p class="alert alert-success">{{success_message}}</p>
+            {%endif%}
+            <div class="mb-3">
+                <label for="number" class="form-label">House No</label>
+                <input type="number" name="number" class="form-control" autocomplete="off" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="surname" class="form-label">Amount</label>
+                <input type="number" name="amount" class="form-control" autocomplete="off" required>
+            </div>
+            <div class="mb-3">
+                <label for="gender" class="form-label">For the month of</label>
+                <select class="form-control" name="month">
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+            </div>
+
+             <div class="mb-3">
+                <label for="number" class="form-label">Facilitator</label>
+                <input type="text" name="facilitator" class="form-control" autocomplete="off" required>
+            </div>
+
+            <button type="submit" name="btn_add" class="btn btn-success form-control">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

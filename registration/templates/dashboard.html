@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborhood Watch Dashboard</title>
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+    <style>
+        /* Add some basic styling for animations */
+        .jumbotron {
+            animation: fadeIn 2s;
+            margin-bottom:0;
+            width:100.08%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .security-guards img {
+            transition: transform 0.5s;
+        }
+        .security-guards img:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            animation: slideUp 1s;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        @media (max-width: 768px){
+        img{
+        height:auto;
+        max-width:80%;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .security-guards img {
+            transition: transform 0.5s;
+        }
+        .security-guards img:hover {
+            transform: scale(1);
+        }
+        body{
+        font-family:'Open Sans', Arial, Sans-serif;font-size:16px;line-height:1.5;
+        }
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-md-12">
+                <div class="jumbotron" style="background-image: linear-gradient(to bottom, #007bff, #0069d9); color: white;">
+                    <h1 class="display-4">Welcome to our Neighborhood Watch Community!</h1>
+                    <p class="lead">We're glad you're here. Let's work together to make our community a safer and better place.</p>
+                    <hr class="my-4">
+                    <p>Promoting a crime-free Woodlands Park</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Your Co-operation adds value</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{% static 'images/dashboard_icon.png'%}" class="img-fluid" alt="Dashboard Icon">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Our Security Guards</h2>
+                    </div>
+                </div>
+                <div class="row security-guards">
+                    <div class="col-md-4">
+                        <img src="{% static 'images/guards.jpg' %}" class="img-fluid" alt="Security Guard 1">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="{% static 'images/security.jpg' %}" class="img-fluid" alt="Security Guard 2">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="{% static 'images/guard.jpg' %}" class="img-fluid" alt="Security Guard 3">
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <footer class="footer mt-auto py-3 bg-dark" >
+        <div class="container">
+            <span style="color:white;">All Rights Reserved @2025</span>
+        </div>
+    </footer>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script>
+        $(document).ready(function() {
+            $('jumbotron').hide().fadeIn(500);
+            $('.footer').hide().slideDown(1000);
+            $('.security-guards img').hover(function() {
+                $(this).animate({
+                    opacity: 0.6
+                }, 500);
+            }, function() {
+                $(this).animate({
+                    opacity: 1
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
+

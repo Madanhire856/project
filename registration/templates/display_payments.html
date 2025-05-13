@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWoodlands|Payments</title>
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/display_payments.css' %}">
+</head>
+{% include 'navbar.html' %}
+    <div class="container-fluid mt-5">
+        <h1 class="text-center mb-4">Houses that have paid security fee</h1>
+        <form method="post" class="form-inline justify-content-center mb-4">
+            {% csrf_token %}
+            <label for="month" class="mr-2">Select Month:</label>
+            <select name="month" id="month" class="form-control mr-2">
+                <option >January</option>
+                <option >February</option>
+                <option >March</option>
+                <option >April</option>
+                <option >May</option>
+                <option >June</option>
+                <option >July</option>
+                <option >August</option>
+                <option >September</option>
+                <option >October</option>
+                <option >November</option>
+                <option >December</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>House Number</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for houses in house %}
+                    <tr>
+                        <td>{{ houses.number }}</td>
+                        <td> ${{ houses.amount}}</td>
+                    </tr>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div><br><br>
+<footer class="footer mt-auto py-3 bg-dark" >
+        <div class="container">
+            <span style="color:white;">All Rights Reserved @2025</span>
+        </div>
+    </footer>

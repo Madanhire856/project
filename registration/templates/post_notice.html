@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Notice</title>
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+    <style>
+        .post-notice {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-notice label {
+            font-weight: bold;
+        }
+
+        .post-notice input[type="text"], .post-notice textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .post-notice input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        .post-notice button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .post-notice button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    {% include 'admin_navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-md-12">
+                <h1 class="display-4">Post Notice</h1>
+                <hr class="my-4">
+                {% if success_message%}
+                <p class="alert alert-success">{{success_message}}</p>
+                {%endif%}
+                <form method="post" enctype="multipart/form-data" class="post-notice">
+                    {% csrf_token %}
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" rows="5" required></textarea>
+                    <button type="submit">Post Notice</button>
+                </form>
+            </main>
+        </div>
+    </div>
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <span style="color:white;">All Rights Reserved @2025</span>
+        </div>
+    </footer>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+</body>
+</html>

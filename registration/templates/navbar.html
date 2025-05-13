@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {%load static %}
+
+        <style>
+        /* Add some basic styling for animations */
+        .jumbotron {
+            animation: fadeIn 2s;
+            margin-bottom:0;
+            width:100.08%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .security-guards img {
+            transition: transform 0.5s;
+        }
+        .security-guards img:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            animation: slideUp 1s;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        @media (max-width: 768px){
+        img{
+        height:auto;
+        max-width:80%;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .security-guards img {
+            transition: transform 0.5s;
+        }
+        .security-guards img:hover {
+            transform: scale(1);
+        }
+        body{
+        font-family:'Open Sans', Arial, Sans-serif;font-size:16px;line-height:1.5;
+        }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">MyWoodlands</a>
+        <button class="navbar-toggler" style="padding:0.20rem 0.3 rem; font-size:1rem;border:none;outline:none;box-shadow:none;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{%url 'dashboard'%}">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'notices' %}">Posts</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'display_payments' %}">Security Payments</a>
+                </li>
+              
+            </ul>
+        </div>
+    </nav>
+
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.jumbotron').hide().fadeIn(5000);
+            $('.footer').hide().slideDown(1000);
+            $('.security-guards img').hover(function() {
+                $(this).animate({
+                    opacity: 0.6
+                }, 500);
+            }, function() {
+                $(this).animate({
+                    opacity: 1
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
